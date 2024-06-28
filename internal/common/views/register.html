@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    {{template "header" .}}
+
+    <main class="main-content">
+      <section class="form-section">
+        <h2>Register</h2>
+        <form id="registerForm" action="/register" method="post">
+          <label for="registerName">Name:</label>
+          <input type="text" id="registerName" name="name" required />
+          <label for="registerPhone">Phone:</label>
+          <input type="tel" id="registerPhone" name="phone" required />
+          <label for="registerEmail">Email:</label>
+          <input type="email" id="registerEmail" name="email" required />
+          <label for="registerAddress">Address:</label>
+          <input type="text" id="registerAddress" name="adress" required />
+          <label for="registerPassword">Password:</label>
+          <input
+            type="password"
+            id="registerPassword"
+            name="password"
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+        <br /><br />
+        <a href="/login"
+          ><button type="submit">Already have account?</button></a
+        >
+      </section>
+    </main>
+
+    {{template "footer" .}}
+
+    <script src="script.js"></script>
+  </body>
+</html>

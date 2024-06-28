@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Rubik's Cube Shop</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    {{template "header" .}}
+
+    <main class="main-content">
+      <h2>Cart</h2>
+      {{if .Products}} {{ $carts := .Carts }} {{ range $index, $ := .Products }}
+      <section id="product-details" class="product-details-section">
+        <div class="product-details">
+          <img
+            id="productImage"
+            src="../../img/{{.ID}}.webp"
+            alt="Product Image"
+          />
+          <div class="product-info">
+            <h1 id="productName">{{ .Name }}</h1>
+            <p id="productDescription">{{ .About}}</p>
+            <p id="productPrice">${{ .Price }}</p>
+            <p>Bought {{ .Bought }}</p>
+            {{ if lt $index (len $carts) }}
+            <div>
+              <a href="/cart/add/{{ .ID }}"><button>+</button></a>
+              <p>Quantity: {{ (index $carts $index).Quantity }}</p>
+              <a href="/cart/less/{{ .ID }}"><button>-</button></a>
+            </div>
+            <a href="/cart/delete/{{ .ID }}"><button>Delete</button></a>
+            {{end}}
+          </div>
+        </div>
+      </section>
+      {{end}}
+      <a href=""><button>Buy</button></a>
+      {{else}}
+      <h2>Nothing in Cart</h2>
+      {{end}}
+    </main>
+    <!-- <main class="main-content">
+        <section id="products" class="product-section">
+          <h2>Cart</h2>
+          {{if .Products}}
+          <div class="cart-grid" id="productGrid">
+            {{ $carts := .Carts }} {{ range $index, $ := .Products }}
+            <div class="product-card" data-category="{{ .CategoryId }}">
+              <a href="product.html?id={{.ID}}">
+                <img src="img/{{.ID}}.webp" alt="Rubik's Cube" />
+                <h3>{{ .Name }}</h3>
+              </a>
+              <p>${{ .Price }}</p>
+              <p>{{ .About}}</p>
+              <p>Bought {{ .Bought }}</p>
+              {{ if lt $index (len $carts) }}
+              <div>
+                <a href=""><button>+</button></a>
+                <p>Quantity: {{ (index $carts $index).Quantity }}</p>
+                <a href=""><button>-</button></a>
+              </div>
+            </div>
+            {{end}} {{end}}
+          </div>
+          <a href=""><button>Buy</button></a>
+          {{else}}
+          <h2>Nothing in Cart</h2>
+          {{end}}
+        </section>
+      </main> -->
+
+    {{template "footer" .}}
+    <script src="../../script.js"></script>
+  </body>
+</html>

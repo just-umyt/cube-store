@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Rubik's Cube Shop</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body>
+    {{template "header" .}}
+
+    <section id="home" class="hero">
+      <h1>Welcome to the Rubik's Cube Shop</h1>
+      <p>Find the best Rubik's cubes and accessories</p>
+    </section>
+
+    <div class="content-wrapper">
+      <aside class="sidebar">
+        <section id="search" class="search-section">
+          <form id="searchForm">
+            <input
+              type="text"
+              id="searchInput"
+              name="search"
+              placeholder="Search for products..."
+            />
+            <button type="submit">Search</button>
+          </form>
+        </section>
+
+        <section id="categories" class="category-section">
+          <h2>Categories</h2>
+          <ul class="category-list">
+            {{range .Categories}}
+            <li><a href="#{{.ID}}">{{ .Name }}</a></li>
+            {{end}}
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main-content">
+        <section id="products" class="product-section">
+          <h2>Our Products</h2>
+          <div class="product-grid" id="productGrid">
+            {{ range .Products}}
+            <div class="product-card" data-category="{{ .CategoryId }}">
+              <a href="product.html?id={{.ID}}">
+                <img src="../../img/{{.ID}}.webp" alt="Rubik's Cube" />
+                <h3>{{ .Name }}</h3>
+              </a>
+              <p>${{ .Price }}</p>
+              <p>Bought {{ .Bought }}</p>
+              <a href="/add/{{.ID}}"><button>Add to Cart</button></a>
+            </div>
+            {{end}}
+          </div>
+        </section>
+      </main>
+    </div>
+
+    {{template "footer" .}}
+    <script src="../../script.js"></script>
+  </body>
+</html>

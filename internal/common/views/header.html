@@ -1,0 +1,18 @@
+<header>
+  <nav>
+    <div class="logo">Rubik's Cube Shop</div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/cart/">Cart {{ .Cart }}</a></li>
+      <li><a href="/contact">Contact</a></li>
+      {{if .Name}}
+      <li><a href="#">{{.Name}}</a></li>
+      {{else}}
+      <li><a href="/login">Log in</a></li>
+      {{end}}
+
+      <!-- <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li> -->
+    </ul>
+  </nav>
+</header>

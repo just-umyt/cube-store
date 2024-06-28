@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    {{template "header" .}}
+    <main class="main-content">
+      <section id="product-details" class="product-details-section">
+        <div class="product-details">
+          <img id="productImage" src="" alt="Product Image" />
+          <div class="product-info">
+            <h1 id="productName">Product Name</h1>
+            <p id="productDescription">Product Description</p>
+            <p id="productPrice">$0.00</p>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{template "footer" .}}
+
+    <script src="product.js"></script>
+  </body>
+</html>
