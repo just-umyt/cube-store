@@ -29,11 +29,29 @@ func Session(c *fiber.Ctx) error {
 			// Secure:   true,
 		})
 
+		var user models.User
+
+		database.DB.First(&user, session.UserId)
+
+		c.Locals("user", user)
+		c.Locals("session", session)
 		return c.Next()
 
+	} else {
+		var err error
+		session, err = ParseSessionToken(sessionCookie)
+		if err != nil {
+			fmt.Println("Failed to parse session token")
+		}
+
+		var user models.User
+
+		database.DB.First(&user, session.UserId)
+
+		c.Locals("user", user)
+		c.Locals("session", session)
+		return c.Next()
 	}
-	c.Locals("session", session)
-	return c.Next()
 
 }
 

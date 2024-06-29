@@ -7,6 +7,7 @@ import (
 )
 
 func Cart(c *fiber.Ctx) error {
+	user := c.Locals("user").(models.User)
 	//cart Products y Local dan alyas
 	shopCart := c.Locals("shop_cart").(models.Cart)
 
@@ -20,8 +21,9 @@ func Cart(c *fiber.Ctx) error {
 		database.DB.First(&product, prd.ProductId)
 		products = append(products, product)
 	}
-
+ 
 	return c.Render("cart", fiber.Map{
+		"Name":     user.Name,
 		"Products": products,
 		"Carts":    cartProducts,
 		"Cart":     len(cartProducts),

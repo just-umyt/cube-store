@@ -20,7 +20,6 @@ func Cart(c *fiber.Ctx) error {
 	shopCartCookie := c.Cookies("shop_cart")
 
 	if shopCartCookie == "" {
-
 		session := c.Locals("session").(models.Session)
 
 		shopCart.SessionId = session.ID

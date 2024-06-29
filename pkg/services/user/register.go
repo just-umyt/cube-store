@@ -18,7 +18,7 @@ func Register(c *fiber.Ctx) error {
 		Name     string
 		Phone    string
 		Email    string
-		Addres   string
+		Adress   string
 		Password string
 	}
 

@@ -13,11 +13,12 @@ import (
 
 func Handlers(app *fiber.App) {
 	//home page
-	app.Get("/", middleware.Session, home.Home)
-	app.Get("/add/:id", middleware.Cart, cartServices.CartAdd, home.Home)
+	homeApi := app.Group("/", middleware.Session)
+	homeApi.Get("/", home.Home)
+	homeApi.Get("/add/:id", middleware.Cart, cartServices.CartAdd, home.Home)
 
 	//Cart Page
-	cartApi := app.Group("/cart", middleware.Cart)
+	cartApi := app.Group("/cart", middleware.Session, middleware.Cart)
 	cartApi.Get("/", cart.Cart)
 	cartApi.Get("/add/:id", cartServices.CartAdd, cart.Cart)
 	cartApi.Get("/less/:id", cartServices.CartLess, cart.Cart)
